@@ -3,3 +3,4 @@ node_modules/
 
 # Игнорируем файл .env
 .env
+.gitignore

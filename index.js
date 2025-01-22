@@ -1,9 +1,12 @@
 import express from "express";
-import dotenv from "dotenv";
+import { configDotenv } from "dotenv";
+import bot from "./bot/index.js";
 
-dotenv.config();
-
+const dotEnv = configDotenv();
 const app = express();
-app.listen(process.env.PORT, () => {
-  console.log(`Applicaion started on port ${PORT}`);
+const port = process.env.SERVER_PORT;
+
+app.listen(port, () => {
+  console.log(`Applicaion started on port ${port}. http://localhost:${port}`);
 });
+bot.launch();
