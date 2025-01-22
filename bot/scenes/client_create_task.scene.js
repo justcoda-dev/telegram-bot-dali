@@ -6,7 +6,7 @@ export const client_create_task = new WizardScene(
   CLIENT_KEYBOARD_ID.CREATE_TASK,
   async (ctx) => {
     try {
-      await ctx.reply("Будь ласка опишіть вашу задачу");
+      await ctx.reply("Опишіть ваше завдання.");
       return ctx.wizard.next();
     } catch (error) {
       console.error(error);
@@ -18,7 +18,7 @@ export const client_create_task = new WizardScene(
       const task = ctx.message.text;
       ctx.session.task = task;
       await ctx.reply(
-        `Відправити задачу :${task} ?`,
+        `Відправити завдання :${task} ?`,
         submit_create_task_keyboard
       );
       return ctx.scene.leave();

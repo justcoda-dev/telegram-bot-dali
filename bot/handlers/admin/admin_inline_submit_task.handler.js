@@ -19,13 +19,13 @@ export const admin_submit_task_handler = async (ctx) => {
       ctx.session = {};
       ctx.deleteMessage();
       ctx.reply(
-        `Задачу ID:${task.dataValues.id}, від ${client.dataValues.name} пвдтверджено`
+        `Завдання id:${task.dataValues.id}, від ${client.dataValues.name} пвдтверджено`
       );
     } else {
-      ctx.reply(`Задачі з ID:${task_id} не знайдено`);
+      ctx.reply(`Завдання з id:${task_id} не знайдено`);
     }
   } catch (error) {
     console.error(error);
-    ctx.reply(`Помилка на сервері`);
+    ctx.reply(`При відтвердженні завдання сталась помилка:(`);
   }
 };

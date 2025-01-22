@@ -6,11 +6,13 @@ export const add_client_scene = new WizardScene(
   ADMIN_KEYBOARD_ID.ADD_CLIENT,
   async (ctx) => {
     try {
-      ctx.reply("Введіть Telegram ID вклієнта");
+      await ctx.reply("Введіть телеграм id вклієнта.");
       return ctx.wizard.next();
     } catch (error) {
       console.error(error);
-      ctx.reply(error);
+      await ctx.reply(
+        "Нажаль при створенні сталася помилка, спробуйте пізніше :("
+      );
     }
   },
   async (ctx) => {
@@ -21,17 +23,20 @@ export const add_client_scene = new WizardScene(
         .every((char) => char >= "0" && char <= "9");
       if (idIsNumber) {
         ctx.session.client_id = client_id;
-        await ctx.reply("Введіть імя клієнта");
+        await ctx.reply("Введіть ім'я клієнта.");
         return ctx.wizard.next();
       } else {
         await ctx.reply(
-          "Telegram ID вказано невірно! Перевірте та вкажіть ще раз."
+          "Телеграм id вказано невірно! Воно складаєть тільки з цифр. Перевірте та вкажіть ще раз."
         );
         return ctx.scene.reenter();
       }
     } catch (error) {
       console.error(error);
-      await ctx.reply(error);
+
+      await ctx.reply(
+        "Нажаль при створенні сталася помилка, спробуйте пізніше :("
+      );
     }
   },
   async (ctx) => {
@@ -40,17 +45,19 @@ export const add_client_scene = new WizardScene(
       if (client_name) {
         ctx.session.client_name = client_name;
         await ctx.reply(
-          `Підтвердіть створення клієнта: Телеграм ІD клієнта: ${ctx.session.client_id}, Імя клієнта ${client_name}`,
+          `Підтвердіть створення клієнта: Телеграм id клієнта: ${ctx.session.client_id}, Ім'я клієнта: ${client_name}`,
           submit_create_client_keyboard
         );
         return ctx.scene.leave();
       } else {
-        await ctx.reply("Імя не може бути пустим. Введіть імя колієнта");
+        await ctx.reply("Ім'я не може бути пустим. Введіть ім'я клієнта.");
         return ctx.wizard.back();
       }
     } catch (error) {
       console.error(error);
-      ctx.reply(error);
+      await ctx.reply(
+        "Нажаль при створенні сталася помилка, спробуйте пізніше :("
+      );
     }
   }
 );

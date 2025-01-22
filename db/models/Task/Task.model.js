@@ -35,7 +35,7 @@ export const Task = psql.define(
             id: task.dataValues.admin_id,
           });
 
-          const message = `Telegram_ID: ${client.dataValues.telegram_chat_id} Task_ID: ${task.dataValues.id} Нова задача від: ${client.dataValues.name}.\n ${task.dataValues.task_text} `;
+          const message = `Telegram_ID: ${client.dataValues.telegram_chat_id} Task_ID: ${task.dataValues.id} Нове завдання від: ${client.dataValues.name}.\n ${task.dataValues.task_text} `;
           await bot.telegram.sendMessage(
             admin.dataValues.telegram_chat_id,
             message,
@@ -51,7 +51,7 @@ export const Task = psql.define(
             id: task.dataValues.client_id,
           });
           if (task.dataValues.is_active && client) {
-            const message = `Task_ID: ${task.dataValues.id}. Вашу задачу прийнято і взято в роботу.`;
+            const message = `Task_ID: ${task.dataValues.id}. Ваше завдання прийнято і взято в роботу.`;
             await bot.telegram.sendMessage(
               client.dataValues.telegram_chat_id,
               message

@@ -13,13 +13,15 @@ const client_submit_create_tusk = async (ctx) => {
       admin_id: client_from_db.dataValues.admin_id,
     });
     if (task) {
-      ctx.reply("Задача створена, чекайте на підтвердження.");
+      ctx.reply(
+        "Завдання створене, зачекайте на підтвердження від адміністратора."
+      );
     } else {
-      ctx.reply("Нажаль не вийшлов створити задачу");
+      ctx.reply("Завдання не створене, можливо вас видалили з бази клієнтів.");
     }
   } catch (error) {
     console.error(error);
-    ctx.reply("При створенні задачі сталась помилка", error);
+    ctx.reply("При створенні завдання сталася помилка", error);
   }
 };
 const client_cancel_create_task = async (ctx) => {

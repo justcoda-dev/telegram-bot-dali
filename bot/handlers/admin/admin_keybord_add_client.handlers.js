@@ -15,13 +15,15 @@ const submit_add_client_handler = async (ctx) => {
     if (client) {
       ctx.session = {};
       ctx.deleteMessage();
-      ctx.reply(`Клієнта ${client.dataValues.name} успішно створено`);
+      ctx.reply(`Клієнта ${client.dataValues.name} успішно створено.`);
     } else {
-      ctx.reply(`Невірно вказанні данні`);
+      ctx.reply(
+        `Невірно вказанні данні. Телеграм id повинно містити тільки цифри, а ім'я тільки літери.`
+      );
     }
   } catch (error) {
     console.error(error);
-    ctx.reply("При створенні виникла помилка", error);
+    ctx.reply("При створенні клієнта виникла помилка.");
   }
 };
 

@@ -17,6 +17,6 @@ export const authorization = async (ctx, next) => {
   } else if (user_is_admin) {
     return admin_composer.middleware()(ctx, next);
   } else {
-    ctx.reply("У вас немає доступу до користування цим ботом");
+    ctx.reply("Нажаль у вас немає доступу до користування цим ботом.");
   }
 };
